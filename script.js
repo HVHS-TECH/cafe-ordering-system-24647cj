@@ -21,3 +21,5 @@
 
 // }
 
+const ITEM_PRICE = 100;
+const menu
