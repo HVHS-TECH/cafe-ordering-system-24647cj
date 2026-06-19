@@ -41,7 +41,7 @@ if(Money < 100){
 }
 
 if (Item < 0 || Item > shoparray.length || isNaN(Item)) {
-        OUTPUT.innerHTML = "<p style='color: red;'>❌ Error: Please choose a valid item number (1, 2, or 3).</p>";
+        OUTPUT.innerHTML = "<p>Error: Please choose a valid item number (1, 2, or 3).</p>";
         return; 
     } else {
         // If they have enough money, calculate change
