@@ -18,31 +18,31 @@
 
 <img src="Pictures/Sparco Racing suit.jpg" alt="Racing Equipment menu" id="rm">
 
-<form onsubmit="return false; ">
-<label for="formItem">Item :</label>
-<input type="text" id="itemField" name="formItem">
-<input type="submit" onClick=getFormInput()>
-</form>
+<form onsubmit="return false;">
+        <div>
+            <label for="itemField">Item (1, 2, or 3): </label>
+            <input type="text" id="itemField" name="formItem">
+        </div>
+        <br>
+        <div>
+            <label for="nameField">Name: </label>
+            <input type="text" id="nameField" name="formName">
+        </div>
+        <br>
+        <div>
+            <label for="moneyField">Money: </label>
+            <input type="text" id="moneyField" name="formMoney">
+        </div>
+        <br>
+        <input type="submit" value="Place Order" onClick="orderProcess()">
+    </form>
 
-<form onsubmit="return false; ">
-<label for="formName">Name :</label>
-<input type="text" id="nameField" name="formName">
-<input type="submit" onClick=getFormInput()>
-</form>
+    <div id="spaceForJavaScriptOutput">
+        <p>The output of your script will go here.</p>
+    </div>
 
-<form onsubmit="return false; ">
-<label for="formMoney">Money :</label>
-<input type="text" id="moneyField" name="formMoney">
-<input type="submit" onClick=orderProcess()>
-</form>
+    <script src="script.js"></script>
 
- <div id="spaceForJavaScriptOutput">
-
-    The output of your script will go here.
-
-  </div>
-
-<script src="script.js"></script>
 </body>
 </html>
 
