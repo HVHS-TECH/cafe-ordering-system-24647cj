@@ -23,3 +23,7 @@
 
 const ITEM_PRICE = 100;
 let shoparray = ["Sparco Racing suit","Bell Racing helmet","Minus Racing gloves","LN Racing shoes"]
+
+function ordeProcess(){
+    
+}
