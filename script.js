@@ -43,6 +43,19 @@ if(Money < 100){
 if (Item < 0 || Item > shoparray.length || isNaN(Item)) {
         OUTPUT.innerHTML = "<p style='color: red;'>❌ Error: Please choose a valid item number (1, 2, or 3).</p>";
         return; 
+    } else {
+        // If they have enough money, calculate change
+        let change = userMoney - ITEM_PRICE;
+
+        // Print the 5 required fields to the Receipt
+        OUTPUT.innerHTML = `
+            <h3>🧾 Receipt Summary</h3>
+            <p><b>1. Customer Name:</b> ${userName}</p>
+            <p><b>2. Item Bought:</b> ${selectedItemName} ($${ITEM_PRICE})</p>
+            <p><b>3. Total Cost:</b> $${ITEM_PRICE}</p>
+            <p><b>4. Money Given:</b> $${userMoney}</p>
+            <p><b>5. Your Change:</b> $${change}</p>
+        `;
     }
 
 }
