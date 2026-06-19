@@ -23,7 +23,17 @@
 
 const ITEM_PRICE = 100;
 let shoparray = ["Sparco Racing suit","Bell Racing helmet","Minus Racing gloves","LN Racing shoes"]
+const OUTPUT = document.getElementById("spaceForJavaScriptOutput");
 
 function ordeProcess(){
-    
+
+const ITEM_FIELD = document.getElementById("itemField");
+const NAME_FIELD = document.getElementById("nameField");
+const MONEY_FIELD = document.getElementById("moneyField");
+
+let Item = ITEM_FIELD_FIELD.value;
+let Name = NAME_FIELD.value;
+let Money = MONEY_FIELDY_FIELD.value;
+
+
 }
