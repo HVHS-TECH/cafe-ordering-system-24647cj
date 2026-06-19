@@ -31,9 +31,9 @@ const ITEM_FIELD = document.getElementById("itemField");
 const NAME_FIELD = document.getElementById("nameField");
 const MONEY_FIELD = document.getElementById("moneyField");
 
-let Item = ITEM_FIELD_FIELD.value;
+let Item = ITEM_FIELD.value;
 let Name = NAME_FIELD.value;
-let Money = MONEY_FIELDY_FIELD.value;
+let Money = MONEY_FIELD.value;
 
 if(Money < 100){
     OUTPUT.innerHTML += "<p>Sorry you cant</p>"
