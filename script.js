@@ -37,7 +37,7 @@ let Name = NAME_FIELD.value;
 let Money = MONEY_FIELD.value;
 let selectedItemName = shoparray[itemChoice];
 
-if(Money < 100){
+if(Money < ITEM_PRICE){
     OUTPUT.innerHTML += "<p>Sorry you cant</p>"
 }else{
     if (Item < 0 || Item > shoparray.length || isNaN(Item)) {
