@@ -22,4 +22,4 @@
 // }
 
 const ITEM_PRICE = 100;
-const menu
+let shoparray = ["Sparco Racing suit","Bell Racing helmet","Minus Racing gloves","LN Racing shoes"]
