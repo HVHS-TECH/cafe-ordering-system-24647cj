@@ -35,5 +35,8 @@ let Item = ITEM_FIELD_FIELD.value;
 let Name = NAME_FIELD.value;
 let Money = MONEY_FIELDY_FIELD.value;
 
+if(Money < 100){
+    OUTPUT.innerHTML = "<p>Sorry you cant</p>"
+}
 
 }
