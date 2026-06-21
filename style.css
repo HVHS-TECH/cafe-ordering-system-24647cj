@@ -11,3 +11,41 @@
 #dml{
    justify-content:center
 }
+
+.containor{
+  display: flex;
+  justify-content: center;
+  /* flex-wrap: wrap; */
+  margin-top: 100px; 
+}
+.containor2{
+   display: flex;
+   justify-content: center;
+   /* flex-wrap: wrap; */
+   margin-top: 100px; 
+ }
+.card{
+   width: 3256px;
+   border-radius: 30px;
+   overflow: hidden;
+   box-shadow:8px 8px 16px 0px rgba(0, 0, 0, 0.5);
+   margin: 20px;
+}
+.card9{
+   width: 3256px;
+ 
+   overflow: hidden;
+   margin: 20px;
+}
+.card img{
+   width: 100%;
+   height: auto;
+}
+.content{
+   padding: 16px;
+}
+content h2{
+   text-align: center;
+   font-size: 28px;
+   margin: 10px;
+}
