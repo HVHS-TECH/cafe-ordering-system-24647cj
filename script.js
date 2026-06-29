@@ -38,28 +38,30 @@ let Money = MONEY_FIELD.value;
 let selectedItemName = shoparray[itemChoice];
 
 if(Money < ITEM_PRICE){
+    OUTPUT.innerHTML =   "<p>Your name is "+Name+"</p>";
+     OUTPUT.innerHTML +=   "<p>You chose the "+Item+"</p>";
     OUTPUT.innerHTML += "<p>You do not have enough money to buy the " +(Item) + " ball.</p>";
-
-}else{
-    if (Item < 0 || Item > shoparray.length || isNaN(Item)) {
-        OUTPUT.innerHTML += "<p>Error: Please choose a valid item number (1, 2, or 3).</p>";
-        return; 
-    } else {
-        // If they have enough money, calculate change
-        let change = Money - ITEM_PRICE;
-
-        // Print the 5 required fields to the Receipt
-        OUTPUT.innerHTML = `
-            <h3>🧾 Receipt Summary</h3>
-            <p><b>1. Customer Name:</b> ${Name}</p>
-            <p><b>2. Item Bought:</b> ${selectedItemName} ($${ITEM_PRICE})</p>
-            <p><b>3. Total Cost:</b> $${ITEM_PRICE}</p>
-            <p><b>4. Money Given:</b> $${Money}</p>
-            <p><b>5. Your Change:</b> $${change}</p>
-        `;
-    }
+}
 
 }
 
 
-}
+
+// }else{
+//     if (Item < 0 || Item > shoparray.length || isNaN(Item)) {
+//         OUTPUT.innerHTML += "<p>Error: Please choose a valid item number (1, 2, or 3).</p>";
+//         return; 
+//     } else {
+//         // If they have enough money, calculate change
+//         let change = Money - ITEM_PRICE;
+
+//         // Print the 5 required fields to the Receipt
+//         OUTPUT.innerHTML = `
+//             <h3>🧾 Receipt Summary</h3>
+//             <p><b>1. Customer Name:</b> ${Name}</p>
+//             <p><b>2. Item Bought:</b> ${selectedItemName} ($${ITEM_PRICE})</p>
+//             <p><b>3. Total Cost:</b> $${ITEM_PRICE}</p>
+//             <p><b>4. Money Given:</b> $${Money}</p>
+//             <p><b>5. Your Change:</b> $${change}</p>
+//         `;
+//     }
