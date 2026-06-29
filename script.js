@@ -38,8 +38,8 @@ let Money = MONEY_FIELD.value;
 let selectedItemName = shoparray[itemChoice];
 
 if(Money < ITEM_PRICE){
-    OUTPUT.innerHTML = "<p"
-    OUTPUT.innerHTML += "<p>Sorry you cant</p>"
+    OUTPUT.innerHTML += "<p>You do not have enough money to buy the " +(Item) + " ball.</p>";
+   
 }else{
     if (Item < 0 || Item > shoparray.length || isNaN(Item)) {
         OUTPUT.innerHTML += "<p>Error: Please choose a valid item number (1, 2, or 3).</p>";
