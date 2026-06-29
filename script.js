@@ -38,8 +38,8 @@ let Money = MONEY_FIELD.value;
 let selectedItemName = shoparray[itemChoice];
 
 if(Money < ITEM_PRICE){
-    OUTPUT.innerHTML =   "<p>Your name is "+Name+"</p>";
-     OUTPUT.innerHTML +=   "<p>You chose the "+Item+"</p>";
+    OUTPUT.innerHTML =  "<p>Your name is "+Name+"</p>";
+    OUTPUT.innerHTML += "<p>You chose the "+Item+"</p>";
     OUTPUT.innerHTML += "<p>You do not have enough money to buy the " +(Item) + " ball.</p>";
 }
 
