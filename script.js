@@ -35,7 +35,7 @@ const MONEY_FIELD = document.getElementById("moneyField");
 let Item = ITEM_FIELD.value;
 let Name = NAME_FIELD.value;
 let Money = MONEY_FIELD.value;
-let selectedItemName = shoparray[itemChoice];
+// let selectedItemName = shoparray[itemChoice];
 
 if(Money < ITEM_PRICE){
     OUTPUT.innerHTML =  "<p>Your name is "+Name+"</p>";
