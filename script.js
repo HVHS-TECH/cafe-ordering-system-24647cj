@@ -43,6 +43,12 @@ if(Money < ITEM_PRICE){
     OUTPUT.innerHTML += "<p>You do not have enough money to buy the " +(Item) + " ball.</p>";
 }
 
+if (Money >= ITEM_PRICE){
+    OUTPUT.innerHTML =  "<p>Hi"+Name+"</p>";
+    OUTPUT.innerHTML += "<p>You chose the "+Item+"</p>";
+    OUTPUT.innerHTML += "<p>Your Item has been added to cart</p>";
+}
+
 }
 
 
