@@ -1,3 +1,31 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(27,30,33);
+    color: white;
+    padding: 15px 30px;
+ }
+
+ .nlinks{
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+ }
+
+.nlinks a{
+    color: white;
+    text-decoration: none;
+}
+
+.navbar a:hover{
+    color: orange;
+    text-decoration:  underline;
+}
+
 #ht{
     text-align: center;
 }
