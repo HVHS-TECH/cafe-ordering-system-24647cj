@@ -26,6 +26,10 @@ let shoparray = ["Sparco Racing suit","Bell Racing helmet","Minus Racing gloves"
 const OUTPUT = document.getElementById("spaceForJavaScriptOutput");
 // let selectedItemName = shoparray[itemChoice];
 
+function calculateChange(_money, ITEM_PRICE) {
+  return _Money - ITEM_PRICE;
+}
+
 function orderProcess(){
 
 const ITEM_FIELD = document.getElementById("itemField");
@@ -47,6 +51,7 @@ if (Money >= ITEM_PRICE){
     OUTPUT.innerHTML =  "<p>Hi"+Name+"</p>";
     OUTPUT.innerHTML += "<p>You chose the "+Item+"</p>";
     OUTPUT.innerHTML += "<p>Your Item has been added to cart</p>";
+    OUTPUT.innerHTML += "<p>Your change will be $" + calculateChange(Money, ITEM_PRICE) + "</p>";
 }
 
 }
