@@ -21,7 +21,7 @@
 
 // }
 
-const ITEM_PRICE = 100;
+let ITEM_PRICE = 100;
 let shoparray = ["Sparco Racing suit","Bell Racing helmet","Minus Racing gloves","LN Racing shoes"]
 const OUTPUT = document.getElementById("spaceForJavaScriptOutput");
 // let selectedItemName = shoparray[itemChoice];
