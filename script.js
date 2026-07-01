@@ -6,6 +6,26 @@
 // const AGE_FIELD = document.getElementById("ageField");
 // const BIRTHY_FIELD = document.getElementById("birthyField");
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // let userName = NAME_FIELD.value;
 // let userAge = AGE_FIELD.value;
 // let birthYear = BIRTHY_FIELD.value;
