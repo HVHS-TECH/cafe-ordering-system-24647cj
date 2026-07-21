@@ -179,15 +179,14 @@
 //   }
 // }
 
-// Global item price
+
 const ITEM_PRICE = 100;
 
-// 1. ADD ITEM TO CART (Runs on index.html)
+// Adding the item to the cart
 function addToCart(itemName) {
-  // Get cart array from storage, or start with empty array []
+
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
   
-  // Add item and update localStorage
   cart.push(itemName);
   localStorage.setItem('cart', JSON.stringify(cart));
   
