@@ -78,103 +78,182 @@
 //     }
 
 
-const ITEM_PRICE = 100; 
+// const ITEM_PRICE = 100; 
 
-const shoparray = [
-  "Sparco Racing suit", 
-  "Minus Racing gloves", 
-  "Bell Racing helmet", 
-  "LN Racing shoes"
-];
+// const shoparray = [
+//   "Sparco Racing suit", 
+//   "Minus Racing gloves", 
+//   "Bell Racing helmet", 
+//   "LN Racing shoes"
+// ];
 
 
-function calculateChange(money, totalCost) {
-  return money - totalCost;
-}
+// function calculateChange(money, totalCost) {
+//   return money - totalCost;
+// }
 
+// function addToCart(itemName) {
+//   let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+//   cart.push(itemName);
+//   localStorage.setItem('cartItems', JSON.stringify(cart));
+//   alert(itemName + " has been added to your cart!");
+// }
+
+
+// function displayCart() {
+//   const cartListDiv = document.getElementById("cartItemsList");
+//   if (!cartListDiv) return; 
+//   let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+//   if (cart.length === 0) {
+//     cartListDiv.innerHTML = "<p>Your cart is empty.</p>";
+//     return;
+//   }
+
+//   let htmlContent = "<ul>";
+//   cart.forEach(item => {
+//     htmlContent += `<li>${item} - $${ITEM_PRICE}</li>`;
+//   });
+//   htmlContent += "</ul>";
+
+//   const totalCost = cart.length * ITEM_PRICE;
+//   htmlContent += `<p><strong>Total Items:</strong> ${cart.length}</p>`;
+//   htmlContent += `<p><strong>Total Price:</strong> $${totalCost}</p>`;
+
+//   cartListDiv.innerHTML = htmlContent;
+// }
+
+
+// function orderProcess() {
+//   const OUTPUT = document.getElementById("spaceForJavaScriptOutput");
+//   const NAME_FIELD = document.getElementById("nameField");
+//   const MONEY_FIELD = document.getElementById("moneyField");
+
+//   const customerName = NAME_FIELD.value.trim();
+//   const moneyGiven = parseFloat(MONEY_FIELD.value);
+//   let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+
+//   if (!customerName || isNaN(moneyGiven)) {
+//     OUTPUT.innerHTML = "<p style='color: red;'>Please enter a valid name and money amount.</p>";
+//     return;
+//   }
+
+//   if (cart.length === 0) {
+//     OUTPUT.innerHTML = "<p style='color: red;'>Your cart is empty. Please add items before checking out.</p>";
+//     return;
+//   }
+
+//   const totalCost = cart.length * ITEM_PRICE;
+
+
+//   if (moneyGiven < totalCost) {
+    
+//     OUTPUT.innerHTML = `
+//       <div style="color: red; border: 1px solid red; padding: 10px; margin-top: 10px;">
+//         <h3>Insufficient Funds!</h3>
+//         <p>Customer: ${customerName}</p>
+//         <p>Total Cost: $${totalCost}</p>
+//         <p>Money Provided: $${moneyGiven}</p>
+//         <p>You need $${totalCost - moneyGiven} more to complete this order.</p>
+//       </div>
+//     `;
+//   } else {
+    
+//     const change = calculateChange(moneyGiven, totalCost);
+
+//     OUTPUT.innerHTML = `
+//       <div style="border: 2px dashed black; padding: 15px; margin-top: 15px; background-color: #f9f9f9;">
+//         <h2>--- OFFICIAL RECEIPT ---</h2>
+//         <p><strong>1. Customer Name:</strong> ${customerName}</p>
+//         <p><strong>2. Items Purchased:</strong> ${cart.join(", ")} ($${ITEM_PRICE} each)</p>
+//         <p><strong>3. Total Cost:</strong> $${totalCost}</p>
+//         <p><strong>4. Money Provided:</strong> $${moneyGiven}</p>
+//         <p><strong>5. Change Due:</strong> $${change}</p>
+//         <p><em>Thank you for shopping with us!</em></p>
+//       </div>
+//     `;
+
+    
+//     localStorage.removeItem('cartItems');
+//   }
+// }
+
+// Global item price
+const ITEM_PRICE = 100;
+
+// 1. ADD ITEM TO CART (Runs on index.html)
 function addToCart(itemName) {
-  let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+  // Get cart array from storage, or start with empty array []
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+  // Add item and update localStorage
   cart.push(itemName);
-  localStorage.setItem('cartItems', JSON.stringify(cart));
-  alert(itemName + " has been added to your cart!");
+  localStorage.setItem('cart', JSON.stringify(cart));
+  
+  alert(`${itemName} added to cart!`);
 }
 
-
+// 2. DISPLAY CART ITEMS (Runs on cart.html)
 function displayCart() {
-  const cartListDiv = document.getElementById("cartItemsList");
-  if (!cartListDiv) return; 
-  let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+  const cartList = document.getElementById("cartItemsList");
+  if (!cartList) return; // Stop if not on cart page
+
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
   if (cart.length === 0) {
-    cartListDiv.innerHTML = "<p>Your cart is empty.</p>";
+    cartList.innerHTML = "<p>Your cart is empty.</p>";
     return;
   }
 
-  let htmlContent = "<ul>";
-  cart.forEach(item => {
-    htmlContent += `<li>${item} - $${ITEM_PRICE}</li>`;
-  });
-  htmlContent += "</ul>";
-
-  const totalCost = cart.length * ITEM_PRICE;
-  htmlContent += `<p><strong>Total Items:</strong> ${cart.length}</p>`;
-  htmlContent += `<p><strong>Total Price:</strong> $${totalCost}</p>`;
-
-  cartListDiv.innerHTML = htmlContent;
+  // Calculate total and build display list
+  let totalCost = cart.length * ITEM_PRICE;
+  let itemsHTML = "<ul>" + cart.map(item => `<li>${item} - $${ITEM_PRICE}</li>`).join('') + "</ul>";
+  
+  cartList.innerHTML = `${itemsHTML}<p><strong>Total Cost: $${totalCost}</strong></p>`;
 }
 
-
+// 3. CHECKOUT & RECEIPT PROCESS (Runs on cart.html)
 function orderProcess() {
-  const OUTPUT = document.getElementById("spaceForJavaScriptOutput");
-  const NAME_FIELD = document.getElementById("nameField");
-  const MONEY_FIELD = document.getElementById("moneyField");
+  const name = document.getElementById("nameField").value.trim();
+  const money = parseFloat(document.getElementById("moneyField").value);
+  const output = document.getElementById("spaceForJavaScriptOutput");
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-  const customerName = NAME_FIELD.value.trim();
-  const moneyGiven = parseFloat(MONEY_FIELD.value);
-  let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
-
-
-  if (!customerName || isNaN(moneyGiven)) {
-    OUTPUT.innerHTML = "<p style='color: red;'>Please enter a valid name and money amount.</p>";
+  // Basic Validation
+  if (!name || isNaN(money)) {
+    output.innerHTML = "<p class='error'>Please enter a valid name and amount of money.</p>";
     return;
   }
-
   if (cart.length === 0) {
-    OUTPUT.innerHTML = "<p style='color: red;'>Your cart is empty. Please add items before checking out.</p>";
+    output.innerHTML = "<p class='error'>Your cart is empty!</p>";
     return;
   }
 
   const totalCost = cart.length * ITEM_PRICE;
 
-
-  if (moneyGiven < totalCost) {
-    
-    OUTPUT.innerHTML = `
-      <div style="color: red; border: 1px solid red; padding: 10px; margin-top: 10px;">
-        <h3>Insufficient Funds!</h3>
-        <p>Customer: ${customerName}</p>
-        <p>Total Cost: $${totalCost}</p>
-        <p>Money Provided: $${moneyGiven}</p>
-        <p>You need $${totalCost - moneyGiven} more to complete this order.</p>
-      </div>
-    `;
+  // Check if customer has enough money
+  if (money < totalCost) {
+    output.innerHTML = `
+      <div class='error-box'>
+        <p><strong>Not Enough Money!</strong></p>
+        <p>Total: $${totalCost} | Paid: $${money}</p>
+        <p>You still owe: $${totalCost - money}</p>
+      </div>`;
   } else {
-    
-    const change = calculateChange(moneyGiven, totalCost);
-
-    OUTPUT.innerHTML = `
-      <div style="border: 2px dashed black; padding: 15px; margin-top: 15px; background-color: #f9f9f9;">
-        <h2>--- OFFICIAL RECEIPT ---</h2>
-        <p><strong>1. Customer Name:</strong> ${customerName}</p>
-        <p><strong>2. Items Purchased:</strong> ${cart.join(", ")} ($${ITEM_PRICE} each)</p>
+    // Produce receipt showing all 5 required elements
+    const change = money - totalCost;
+    output.innerHTML = `
+      <div class='receipt-box'>
+        <h3>--- RECEIPT ---</h3>
+        <p><strong>1. Customer:</strong> ${name}</p>
+        <p><strong>2. Items:</strong> ${cart.join(", ")}</p>
         <p><strong>3. Total Cost:</strong> $${totalCost}</p>
-        <p><strong>4. Money Provided:</strong> $${moneyGiven}</p>
+        <p><strong>4. Money Given:</strong> $${money}</p>
         <p><strong>5. Change Due:</strong> $${change}</p>
-        <p><em>Thank you for shopping with us!</em></p>
-      </div>
-    `;
+      </div>`;
 
-    
-    localStorage.removeItem('cartItems');
+    // Clear cart after payment
+    localStorage.removeItem('cart');
   }
 }

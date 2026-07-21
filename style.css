@@ -77,3 +77,58 @@ content h2{
    font-size: 28px;
    margin: 10px;
 }
+
+/* General Layout */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f4f4f4;
+}
+
+/* Buttons & Form Inputs */
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+input {
+  padding: 8px;
+  margin-top: 5px;
+  width: 200px;
+}
+
+/* Warning & Error Message Styling */
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+.error-box {
+  border: 2px solid #ff4d4d;
+  background-color: #ffe6e6;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 8px;
+  color: #b30000;
+}
+
+/* Receipt Styling */
+.receipt-box {
+  border: 2px dashed #333;
+  background-color: #ffffff;
+  padding: 20px;
+  margin-top: 15px;
+  border-radius: 8px;
+  max-width: 400px;
+}
