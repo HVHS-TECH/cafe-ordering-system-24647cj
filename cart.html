@@ -3,10 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cart - Racing Equipment shop</title>
 </head>
 <body>
+  
+    <h1>Cart and Checkout</h1>
+  <a href="index.html">← Back to Shop</a>
+  
+  <h2>Selected Items:</h2>
+  <div id="cartItemsList"></div>
 
-    <h1>Cart</h1>
+  <hr>
+
+  <h2>Checkout Information</h2>
+  <label for="nameField">Customer Name:</label>
+  <input type="text" id="nameField" placeholder="Enter your name"><br><br>
+
+  <label for="moneyField">Payment Amount ($):</label>
+  <input type="number" id="moneyField" placeholder="Enter money amount"><br><br>
+
+  <button onclick="orderProcess()">Complete Order</button>
+
+  <!-- Output space for receipt or error warnings -->
+  <div id="spaceForJavaScriptOutput"></div>
+
+  <script src="script.js"></script>
+  <script>
+    // Automatically load and render cart items when opening cart.html
+    displayCart();
+  </script>
+
 </body>
 </html>
