@@ -180,17 +180,102 @@
 // }
 
 
+// const ITEM_PRICE = 100;
+
+// // Adding the item to the cart
+// function addToCart(itemName) {
+
+//   let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+//   cart.push(itemName);
+//   localStorage.setItem('cart', JSON.stringify(cart));
+  
+//   alert(`${itemName} added to cart!`);
+// }
+
+// // 2. DISPLAY CART ITEMS (Runs on cart.html)
+// function displayCart() {
+//   const cartList = document.getElementById("cartItemsList");
+//   if (!cartList) return; // Stop if not on cart page
+
+//   let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+//   if (cart.length === 0) {
+//     cartList.innerHTML = "<p>Your cart is empty.</p>";
+//     return;
+//   }
+
+//   // Calculate total and build display list
+//   let totalCost = cart.length * ITEM_PRICE;
+//   let itemsHTML = "<ul>" + cart.map(item => `<li>${item} - $${ITEM_PRICE}</li>`).join('') + "</ul>";
+  
+//   cartList.innerHTML = `${itemsHTML}<p><strong>Total Cost: $${totalCost}</strong></p>`;
+// }
+
+// // 3. CHECKOUT & RECEIPT PROCESS (Runs on cart.html)
+// function orderProcess() {
+//   const name = document.getElementById("nameField").value.trim();
+//   const money = parseFloat(document.getElementById("moneyField").value);
+//   const output = document.getElementById("spaceForJavaScriptOutput");
+//   let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+//   // Basic Validation
+//   if (!name || isNaN(money)) {
+//     output.innerHTML = "<p class='error'>Please enter a valid name and amount of money.</p>";
+//     return;
+//   }
+//   if (cart.length === 0) {
+//     output.innerHTML = "<p class='error'>Your cart is empty!</p>";
+//     return;
+//   }
+
+//   const totalCost = cart.length * ITEM_PRICE;
+
+//   // Check if customer has enough money
+//   if (money < totalCost) {
+//     output.innerHTML = `
+//       <div class='error-box'>
+//         <p><strong>Not Enough Money!</strong></p>
+//         <p>Total: $${totalCost} | Paid: $${money}</p>
+//         <p>You still owe: $${totalCost - money}</p>
+//       </div>`;
+//   } else {
+//     // Produce receipt showing all 5 required elements
+//     const change = money - totalCost;
+//     output.innerHTML = `
+//       <div class='receipt-box'>
+//         <h3>--- RECEIPT ---</h3>
+//         <p><strong>1. Customer:</strong> ${name}</p>
+//         <p><strong>2. Items:</strong> ${cart.join(", ")}</p>
+//         <p><strong>3. Total Cost:</strong> $${totalCost}</p>
+//         <p><strong>4. Money Given:</strong> $${money}</p>
+//         <p><strong>5. Change Due:</strong> $${change}</p>
+//       </div>`;
+
+//     // Clear cart after payment
+//     localStorage.removeItem('cart');
+//   }
+// }
+
+// Global item price
 const ITEM_PRICE = 100;
 
-// Adding the item to the cart
+// 1. ADD ITEM TO CART (Runs on index.html)
 function addToCart(itemName) {
-
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  // Get existing cart string from storage
+  let cartString = localStorage.getItem('cart');
   
-  cart.push(itemName);
-  localStorage.setItem('cart', JSON.stringify(cart));
+  // If cart is empty, start with the item; otherwise, append with a comma separator
+  if (!cartString) {
+    cartString = itemName;
+  } else {
+    cartString = cartString + "," + itemName;
+  }
   
-  alert(`${itemName} added to cart!`);
+  // Save plain string back to localStorage
+  localStorage.setItem('cart', cartString);
+  
+  alert(itemName + " added to cart!");
 }
 
 // 2. DISPLAY CART ITEMS (Runs on cart.html)
@@ -198,18 +283,29 @@ function displayCart() {
   const cartList = document.getElementById("cartItemsList");
   if (!cartList) return; // Stop if not on cart page
 
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let cartString = localStorage.getItem('cart');
 
-  if (cart.length === 0) {
+  // Check if cart is empty
+  if (!cartString) {
     cartList.innerHTML = "<p>Your cart is empty.</p>";
     return;
   }
 
-  // Calculate total and build display list
-  let totalCost = cart.length * ITEM_PRICE;
-  let itemsHTML = "<ul>" + cart.map(item => `<li>${item} - $${ITEM_PRICE}</li>`).join('') + "</ul>";
-  
-  cartList.innerHTML = `${itemsHTML}<p><strong>Total Cost: $${totalCost}</strong></p>`;
+  // Convert comma-separated string back into a simple array
+  let cartArray = cartString.split(",");
+
+  // Build the HTML list
+  let htmlContent = "<ul>";
+  for (let i = 0; i < cartArray.length; i++) {
+    htmlContent += "<li>" + cartArray[i] + " - $" + ITEM_PRICE + "</li>";
+  }
+  htmlContent += "</ul>";
+
+  // Calculate total cost
+  let totalCost = cartArray.length * ITEM_PRICE;
+  htmlContent += "<p><strong>Total Cost: $" + totalCost + "</strong></p>";
+
+  cartList.innerHTML = htmlContent;
 }
 
 // 3. CHECKOUT & RECEIPT PROCESS (Runs on cart.html)
@@ -217,42 +313,48 @@ function orderProcess() {
   const name = document.getElementById("nameField").value.trim();
   const money = parseFloat(document.getElementById("moneyField").value);
   const output = document.getElementById("spaceForJavaScriptOutput");
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+  let cartString = localStorage.getItem('cart');
 
-  // Basic Validation
+  // Input Validation
   if (!name || isNaN(money)) {
-    output.innerHTML = "<p class='error'>Please enter a valid name and amount of money.</p>";
+    output.innerHTML = "<p class='error'>Please enter a valid name and money amount.</p>";
     return;
   }
-  if (cart.length === 0) {
+  
+  if (!cartString) {
     output.innerHTML = "<p class='error'>Your cart is empty!</p>";
     return;
   }
 
-  const totalCost = cart.length * ITEM_PRICE;
+  // Convert stored string back into an array to get count & names
+  let cartArray = cartString.split(",");
+  let totalCost = cartArray.length * ITEM_PRICE;
 
   // Check if customer has enough money
   if (money < totalCost) {
-    output.innerHTML = `
-      <div class='error-box'>
-        <p><strong>Not Enough Money!</strong></p>
-        <p>Total: $${totalCost} | Paid: $${money}</p>
-        <p>You still owe: $${totalCost - money}</p>
-      </div>`;
+    output.innerHTML = 
+      "<div class='error-box'>" +
+        "<p><strong>Not Enough Money!</strong></p>" +
+        "<p>Total: $" + totalCost + " | Paid: $" + money + "</p>" +
+        "<p>You still owe: $" + (totalCost - money) + "</p>" +
+      "</div>";
   } else {
     // Produce receipt showing all 5 required elements
-    const change = money - totalCost;
-    output.innerHTML = `
-      <div class='receipt-box'>
-        <h3>--- RECEIPT ---</h3>
-        <p><strong>1. Customer:</strong> ${name}</p>
-        <p><strong>2. Items:</strong> ${cart.join(", ")}</p>
-        <p><strong>3. Total Cost:</strong> $${totalCost}</p>
-        <p><strong>4. Money Given:</strong> $${money}</p>
-        <p><strong>5. Change Due:</strong> $${change}</p>
-      </div>`;
+    let change = money - totalCost;
+    let itemsList = cartArray.join(", ");
 
-    // Clear cart after payment
+    output.innerHTML = 
+      "<div class='receipt-box'>" +
+        "<h3>--- RECEIPT ---</h3>" +
+        "<p><strong>1. Customer:</strong> " + name + "</p>" +
+        "<p><strong>2. Items:</strong> " + itemsList + "</p>" +
+        "<p><strong>3. Total Cost:</strong> $" + totalCost + "</p>" +
+        "<p><strong>4. Money Given:</strong> $" + money + "</p>" +
+        "<p><strong>5. Change Due:</strong> $" + change + "</p>" +
+      "</div>";
+
+    // Clear cart storage after purchase
     localStorage.removeItem('cart');
   }
 }
