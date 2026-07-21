@@ -43,13 +43,13 @@
 .containor{
   display: flex;
   justify-content: center;
-  /* flex-wrap: wrap; */
+  
   margin-top: 100px; 
 }
 .containor2{
    display: flex;
    justify-content: center;
-   /* flex-wrap: wrap; */
+   
    margin-top: 100px; 
  }
 .card{
@@ -78,14 +78,14 @@ content h2{
    margin: 10px;
 }
 
-/* General Layout */
+
 body {
   font-family: Arial, sans-serif;
   margin: 20px;
   background-color: #f4f4f4;
 }
 
-/* Buttons & Form Inputs */
+
 button {
   background-color: #007bff;
   color: white;
@@ -108,7 +108,7 @@ input {
   width: 200px;
 }
 
-/* Warning & Error Message Styling */
+
 .error {
   color: red;
   font-weight: bold;
@@ -123,7 +123,7 @@ input {
   color: #b30000;
 }
 
-/* Receipt Styling */
+
 .receipt-box {
   border: 2px dashed #333;
   background-color: #ffffff;
