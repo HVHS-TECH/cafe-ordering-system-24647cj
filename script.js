@@ -77,8 +77,9 @@
 //         `;
 //     }
 
-// --- CONFIGURATION & GLOBAL VARIABLES ---
-const ITEM_PRICE = 100; // Fixed price for all racing equipment items
+
+const ITEM_PRICE = 100; 
+
 const shoparray = [
   "Sparco Racing suit", 
   "Minus Racing gloves", 
@@ -86,34 +87,22 @@ const shoparray = [
   "LN Racing shoes"
 ];
 
-// Helper function to calculate change
+
 function calculateChange(money, totalCost) {
   return money - totalCost;
 }
 
-// --- MAIN SHOP PAGE FUNCTIONS ---
-
-// Function to add an item to the cart array stored in localStorage
 function addToCart(itemName) {
-  // Retrieve existing cart or initialize an empty array
   let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
-  
-  // Push selected item into cart
   cart.push(itemName);
-  
-  // Save updated cart back to localStorage
   localStorage.setItem('cartItems', JSON.stringify(cart));
-  
   alert(itemName + " has been added to your cart!");
 }
 
-// --- CART PAGE FUNCTIONS ---
 
-// Function to display cart contents and total price on cart.html
 function displayCart() {
   const cartListDiv = document.getElementById("cartItemsList");
-  if (!cartListDiv) return; // Exit if not on cart.html page
-
+  if (!cartListDiv) return; 
   let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
 
   if (cart.length === 0) {
