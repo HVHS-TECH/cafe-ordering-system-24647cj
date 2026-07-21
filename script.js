@@ -123,7 +123,7 @@ function displayCart() {
   cartListDiv.innerHTML = htmlContent;
 }
 
-// Function to handle payment validation, insufficient funds warning, and receipt generation
+
 function orderProcess() {
   const OUTPUT = document.getElementById("spaceForJavaScriptOutput");
   const NAME_FIELD = document.getElementById("nameField");
@@ -133,7 +133,7 @@ function orderProcess() {
   const moneyGiven = parseFloat(MONEY_FIELD.value);
   let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-  // Basic validation check
+
   if (!customerName || isNaN(moneyGiven)) {
     OUTPUT.innerHTML = "<p style='color: red;'>Please enter a valid name and money amount.</p>";
     return;
@@ -146,9 +146,9 @@ function orderProcess() {
 
   const totalCost = cart.length * ITEM_PRICE;
 
-  // Logic: Check if payment is sufficient
+
   if (moneyGiven < totalCost) {
-    // Insufficient funds warning
+    
     OUTPUT.innerHTML = `
       <div style="color: red; border: 1px solid red; padding: 10px; margin-top: 10px;">
         <h3>Insufficient Funds!</h3>
@@ -159,7 +159,7 @@ function orderProcess() {
       </div>
     `;
   } else {
-    // Payment successful: Produce receipt showing all 5 required elements
+    
     const change = calculateChange(moneyGiven, totalCost);
 
     OUTPUT.innerHTML = `
@@ -174,7 +174,7 @@ function orderProcess() {
       </div>
     `;
 
-    // Clear cart storage after successful purchase
+    
     localStorage.removeItem('cartItems');
   }
 }
