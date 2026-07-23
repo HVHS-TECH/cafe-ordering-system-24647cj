@@ -5,6 +5,15 @@ function addToCart(itemName) {
 
   let cartString = localStorage.getItem('cart');
   
+// Limit cart to a maximum of 10 items
+  if (cartString) {
+    let currentItemsCount = cartString.split(",").length;
+    if (currentItemsCount >= 10) {
+      alert("Cart limit reached! You can only buy a maximum of 10 items.");
+      return; // Stops the function here
+    }
+  }
+
   if (!cartString) {
     cartString = itemName;
   } else {
