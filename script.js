@@ -10,7 +10,7 @@ function addToCart(itemName) {
     let currentItemsCount = cartString.split(",").length;
     if (currentItemsCount >= 10) {
       alert("Cart limit reached! You can only buy a maximum of 10 items.");
-      return; // Stops the function here
+      return; 
     }
   }
 
@@ -102,4 +102,11 @@ function orderProcess() {
    
     localStorage.removeItem('cart');
   }
+}
+
+// Clear the cart and refresh the display
+function clearCart() {
+  localStorage.removeItem('cart');
+  alert("Cart has been cleared!");
+  displayCart(); 
 }
