@@ -1,6 +1,6 @@
 const ITEM_PRICE = 100;
 
-
+// Adding items to the cart
 function addToCart(itemName) {
 
   let cartString = localStorage.getItem('cart');
@@ -16,7 +16,7 @@ function addToCart(itemName) {
   alert(itemName + " added to cart!");
 }
 
-
+//Displaing the items in the cart
 function displayCart() {
   const cartList = document.getElementById("cartItemsList");
   if (!cartList) return; 
@@ -44,6 +44,7 @@ function displayCart() {
   cartList.innerHTML = htmlContent;
 }
 
+//Getting inputs from the input fields
 function orderProcess() {
   const name = document.getElementById("nameField").value.trim();
   const money = parseFloat(document.getElementById("moneyField").value);
@@ -66,7 +67,7 @@ function orderProcess() {
   let cartArray = cartString.split(",");
   let totalCost = cartArray.length * ITEM_PRICE;
 
-  
+  //Showing the receipt
   if (money < totalCost) {
     output.innerHTML = 
       "<div class='error-box'>" +
